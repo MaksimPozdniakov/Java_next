@@ -15,7 +15,7 @@ class Tree{
             root = new Node();
             root.value = value;
         }else {
-            isert(root, value);
+            insert(root, value);
         }
     }
 
