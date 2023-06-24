@@ -1,54 +1,55 @@
 package HomeWorks.HomeWork_02;
 
-class List {
-    static Node head;
-
-    static class Node {   // класс узла
-        int value;
-        Node next;
-    }
-
-    public static void pushFront(int value) {     //алгоритм добавления в начало
-        Node node = new Node();
-        node.value = value;
-        node.next = head;
-        head = node;
-    }
-
-    public static void print(){     //алгоритм вывода списка
-        Node cur = head;
-        while (cur != null) {
-            System.out.printf("%d ", cur.value);
-            cur = cur.next;
-        }
-        System.out.println();
-    }
-
-    public static void reverse() {
-        Node prevNode = null;
-        Node currNode = head;
-        Node nextNode = null;
-
-        while (currNode != null) {
-            nextNode = currNode.next; // сохраняем ссылку на следующий узел
-            currNode.next = prevNode; // изменяем ссылку на предыдущий узел
-            prevNode = currNode; // сохраняем текущий узел как предыдущий для следующей итерации
-            currNode = nextNode; // переходим к следующему узлу
-        }
-
-        head = prevNode; // обновляем головной узел
-    }
-
-}
+import java.util.Arrays;
 
 public class Task_01 {
     public static void main(String[] args) {
-        List list = new List();
-        for (int i = 1; i <= 5; i++){
-            list.pushFront(i);
-        }
+        int[] arr = {100,25,12,45,78,98,65,32,5};
 
-        list.reverse(); // вызываем метод разворота
-        list.print();
+        heapSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+
+    private static void heapSort(int[] arr) {
+        // длина нашего массива
+        int n = arr.length;
+
+        // Построение кучи (перегруппируем массив)
+        for (int i = n/2 - 1; i >= 0 ; i--) {
+            heapify(arr, i, n);
+        }
+        // Один за другим извлекаем элементы из кучи
+        for (int i = n-1; i >= 0; i--) {
+            int temp = arr[i];
+            arr[i] = arr[0];
+            arr[0] = temp;
+
+            // Вызываем процедуру heapify на уменьшенной куче
+            heapify(arr, 0, i);
+        }
+    }
+
+    private static void heapify(int[] arr, int i, int n) {
+        int largest = i; // Инициализируем наибольший элемент как корень
+        int l = 2 * i + 1; // левый = 2*i + 1
+        int r = 2 * i + 2; // правый = 2*i + 2
+
+        // Если левый дочерний элемент больше корня
+        if (l < n && arr[l] > arr[largest])
+            largest = l;
+
+        // Если правый дочерний элемент больше, чем самый большой элемент на данный момент
+        if (r < n && arr[r] > arr[largest])
+            largest = r;
+
+        // Если самый большой элемент не корень
+        if (i != largest) {
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
+            heapify(arr, largest, n);
+        }
     }
 }

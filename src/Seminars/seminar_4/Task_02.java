@@ -17,6 +17,7 @@ class Tree{
         }else {
             insert(root, value);
         }
+        // root.color = BLACK;
     }
 
     private void insert(Node node, int value){
@@ -26,6 +27,7 @@ class Tree{
                 if (node.right == null){
                     node.right = new Node();
                     node.right.value = value;
+                    // node.right.color = RED;
                 } else {
                     insert(node.right, value);
                 }
@@ -33,6 +35,7 @@ class Tree{
                 if (node.left == null) {
                     node.left = new Node();
                     node.left.value = value;
+                    // node.left.color = RED;
                 }else {
                     insert(node.left, value);
                 }
@@ -57,10 +60,31 @@ class Tree{
             return find(node.left, value);
         }
     }
+
+    public void printInorder() {
+        printInorder(root);
+        System.out.println();
+    }
+
+    private void printInorder(Node node) {
+        if (node == null) {
+            return;
+        }
+
+        printInorder(node.left);
+        System.out.print(node.value + " ");
+        printInorder(node.right);
+    }
 }
 
 public class Task_02 {
     public static void main(String[] args) {
+        Tree tree = new Tree();
+        for (int i = 1; i < 5; i++) {
+            tree.insert(i);
+        }
 
+        tree.printInorder();  // Выведет дерево в инфиксном порядке
     }
+
 }
