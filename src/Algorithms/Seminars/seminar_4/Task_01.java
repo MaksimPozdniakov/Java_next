@@ -1,4 +1,4 @@
-package Seminars.seminar_4;
+package Algorithms.Seminars.seminar_4;
 
 class HashMap {
     class Entity {

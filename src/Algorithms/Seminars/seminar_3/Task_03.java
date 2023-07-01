@@ -1,4 +1,4 @@
-package Seminars.seminar_3;
+package Algorithms.Seminars.seminar_3;
 
 
 

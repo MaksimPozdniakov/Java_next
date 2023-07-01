@@ -1,26 +1,39 @@
-package Seminars.seminar_3;
+package Algorithms.Seminars.seminar_3;
 
 
-// односвязный список
-
-class List{
+// двусвязный список
+class dList{
     static Node head;
+    static Node tail;
     static class Node{   // класс узла
         int value;
-        Node next;
+        Node next; // ссылка на следующий
+        Node prev; // ссылка на предыдущий
     }
 
     public static void pushFront(int value){     //алгоритм добавления в начало
         Node node = new Node();
         node.value = value;
-        node.next = head;
+
+        if (head == null){
+            tail = node;
+        } else {
+            node.next = head;
+            head.prev = node;
+        }
         head = node;
     }
 
     public static void popFront(){           //алгоритм удаления с начала
         // проверяем пустой список или нет
         if (head != null){
-            head = head.next;
+            if (head.next == null) {
+                head = null;
+                tail = null;
+            }else {
+                head = head.next;
+                head.prev = null;
+            }
         }
     }
 
@@ -48,51 +61,32 @@ class List{
         Node node = new Node();
         node.value = value;
 
-        if (head == null) {
+        if (tail == null){
             head = node;
         } else {
-            Node cur = head;
-            while (cur.next != null) {
-                cur = cur.next;
-            }
-            cur.next = node;
+            node.prev = tail;
+            tail.next = node;
         }
+        tail = node;
     }
 
     public static void popBack(){           //алгоритм удаления с конца
         // проверяем пустой список или нет
         if (head != null){
-            if (head.next == null){
+            if (tail.prev == null) {
                 head = null;
+                tail = null;
             }else {
-                Node cur = head;
-                while (cur.next.next != null) {
-                    cur = cur.next;
-                }
-                cur.next = null;
+                tail = tail.prev;
+                tail.next = null;
             }
         }
     }
 }
 
-public class Task_01 {
+
+public class Task_02 {
     public static void main(String[] args) {
-        List list = new List();
-        for (int i = 1; i <= 5; i++){
-            list.pushFront(i);
-        }
-
-        list.print();
-        list.popFront();
-        list.popFront();
-
-        list.print();
-
-        list.pushBack(7);
-        list.print();
-
-        list.popBack();
-        list.print();
 
     }
 }

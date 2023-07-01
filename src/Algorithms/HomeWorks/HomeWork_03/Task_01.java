@@ -1,4 +1,4 @@
-package HomeWorks.HomeWork_03;
+package Algorithms.HomeWorks.HomeWork_03;
 
 class List {
     static Node head;

@@ -1,4 +1,4 @@
-package Seminars.seminar_1;
+package Algorithms.Seminars.seminar_1;
 
 //сумма простых чисел
 public class Task_1 {

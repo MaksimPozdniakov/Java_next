@@ -1,4 +1,4 @@
-package HomeWorks.HomeWork_02;
+package Algorithms.HomeWorks.HomeWork_02;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package Seminars.seminar_2;
+package Algorithms.Seminars.seminar_2;
 
 
 // сортировка слиянием

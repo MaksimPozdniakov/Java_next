@@ -1,4 +1,4 @@
-package HomeWorks.HomeWork_04;
+package Algorithms.HomeWorks.HomeWork_04;
 
 class Tree {
     Node root;
